@@ -1,0 +1,64 @@
+{
+  "name": "Codespace Base",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    // Use Bash as the default terminal
+    "terminal.integrated.defaultProfile.linux": "bash",
+
+    // Editor quality-of-life settings
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+
+    // Prettier (for HTML/CSS/JS)
+    "prettier.singleQuote": true,
+    "prettier.semi": false,
+    "prettier.tabWidth": 2,
+
+    // Java formatting and project handling
+    "java.configuration.checkProjectSettingsExclusions": false,
+    "java.format.settings.url": "https://raw.githubusercontent.com/redhat-developer/vscode-java/master/format-settings.xml"
+  },
+  "forwardPorts": [8080],
+  "remoteUser": "vscode",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // --- Web Development ---
+        "ritwickdey.LiveServer",          // Live preview for HTML/CSS/JS
+        "esbenp.prettier-vscode",         // Code formatter
+        "dbaeumer.vscode-eslint",         // JS linter
+
+        // --- Java Development ---
+        "redhat.java",                    // Java language support
+        "vscjava.vscode-java-debug",      // Java debugging
+        "vscjava.vscode-java-test",       // Java testing tools
+        "vscjava.vscode-maven",           // Maven integration (optional)
+
+        // --- Utilities ---
+        "ms-vscode.vscode-typescript-next", // Updated JS/TS tooling
+        "formulahendry.code-runner",        // Run snippets easily
+        "github.vscode-pull-request-github" // GitHub integration
+      ],
+      "settings": {
+        // Configure Live Server to use port 8080
+        "liveServer.settings.port": 8080,
+
+        // Make sure Java uses JDK 17
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-17",
+            "path": "/usr/lib/jvm/java-17-openjdk-amd64"
+          }
+        ]
+      }
+    }
+  },
+
+  // Run after Codespace finishes building
+  "postCreateCommand": "echo '✅ Environment ready! Use `git clone <repo>` to start a project, and `http-server` to preview HTML on port 8080.'"
+}
